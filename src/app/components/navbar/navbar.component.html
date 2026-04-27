@@ -1,15 +1,37 @@
 <nav class="navbar-sentinel">
   <a class="nav-brand" routerLink="/">SENTINEL</a>
 
+  <!-- links -->
   <div class="nav-links">
-    <a class="nav-link-item" routerLink="/"         routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
-    <a class="nav-link-item" routerLink="/scan"      routerLinkActive="active">Scan</a>
+    <a class="nav-link-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Home</a>
+    <a class="nav-link-item" routerLink="/scan" routerLinkActive="active">Scan</a>
     <a class="nav-link-item" routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
   </div>
 
-<div class="nav-icons">
-  <i class="icon-item fa-regular fa-bell"></i>
-  <i class="icon-item fa-solid fa-terminal"></i>
-  <i class="icon-item fa-regular fa-user"></i>
-</div>
+  <!-- icons (desktop) -->
+  <div class="nav-icons desktop-icons">
+    <i class="icon-item fa-regular fa-bell"></i>
+    <i class="icon-item fa-solid fa-terminal"></i>
+    <i class="icon-item fa-regular fa-user"></i>
+  </div>
+
+  <!-- hamburger -->
+  <div class="menu-toggle" (click)="toggleMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
 </nav>
+
+<!-- mobile menu -->
+<div class="mobile-menu" [class.open]="menuOpen">
+  <a routerLink="/" (click)="toggleMenu()">Home</a>
+  <a routerLink="/scan" (click)="toggleMenu()">Scan</a>
+  <a routerLink="/dashboard" (click)="toggleMenu()">Dashboard</a>
+
+  <div class="mobile-icons">
+    <i class="icon-item fa-regular fa-bell"></i>
+    <i class="icon-item fa-solid fa-terminal"></i>
+    <i class="icon-item fa-regular fa-user"></i>
+  </div>
+</div>
