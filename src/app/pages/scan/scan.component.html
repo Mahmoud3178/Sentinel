@@ -1,0 +1,138 @@
+<div class="container scan-page">
+  <div class="row">
+    <div class="col-12">
+      <h1>Start a New Security Scan</h1>
+      <p class="subtitle">Enter a domain and let the framework automatically perform security testing across multiple stages.</p>
+    </div>
+  </div>
+
+  <div class="row g-4">
+    <!-- Left Column -->
+    <div class="col-lg-8">
+
+      <!-- Domain Input Card -->
+      <div class="scan-card">
+        <div class="scan-label">Target Domain</div>
+        <input class="scan-input" type="text" [(ngModel)]="domain" placeholder="example.com" />
+        <p class="scan-hint">Only domain name is required. No technical expertise needed.</p>
+        <button class="btn-start-scan" (click)="startScan()">START SCAN</button>
+      </div>
+
+      <!-- Advanced Toggle -->
+      <div class="advanced-toggle" (click)="toggleAdvanced()">
+        <span>⚙️ Advanced Options</span>
+        <span class="chevron" [class.open]="advancedOpen">▼</span>
+      </div>
+
+      <div class="advanced-panel" [class.open]="advancedOpen">
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div class="scan-label">Scan Depth</div>
+            <select class="adv-select">
+              <option>Standard</option>
+              <option>Deep</option>
+              <option>Stealth</option>
+            </select>
+          </div>
+          <div class="col-sm-6">
+            <div class="scan-label">Threads</div>
+            <input class="adv-input" type="number" value="10" min="1" max="50" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Scans -->
+      <div class="recent-table">
+        <h5>
+          Recent Scans
+          <span class="view-all-link">View Full History</span>
+        </h5>
+        <div style="clear:both"></div>
+        <table class="table-sentinel">
+          <thead>
+            <tr>
+              <th>Domain</th>
+              <th>Status</th>
+              <th>Risk Level</th>
+              <th>Activity</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (scan of recentScans; track scan.domain) {
+              <tr>
+                <td>{{ scan.domain }}</td>
+                <td>
+                  @if (scan.status === 'running') {
+                    <span class="status-running">● Running</span>
+                  } @else {
+                    <span class="status-done">Completed</span>
+                  }
+                </td>
+                <td>
+                  <span class="badge-risk" [class]="'badge-' + scan.risk">
+                    {{ scan.risk | uppercase }}
+                  </span>
+                </td>
+                <td>
+                  @if (scan.status === 'running') {
+                    <span class="progress-bar-mini"><span class="fill"></span></span>
+                  } @else {
+                    <span class="time-ago">{{ scan.time }}</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Right Column: Pipeline Info -->
+    <div class="col-lg-4">
+      <div class="pipeline-info">
+        <h6>What will happen?</h6>
+
+        <div class="pipeline-info-step">
+          <div class="pipeline-info-icon">🔍</div>
+          <div class="pipeline-info-text">
+            <h6>Discover assets</h6>
+            <p>Identifying subdomains and linked infrastructure.</p>
+          </div>
+        </div>
+        <div class="pipeline-info-step">
+          <div class="pipeline-info-icon">🔌</div>
+          <div class="pipeline-info-text">
+            <h6>Scan ports</h6>
+            <p>Probing for open communication gateways.</p>
+          </div>
+        </div>
+        <div class="pipeline-info-step">
+          <div class="pipeline-info-icon">JS</div>
+          <div class="pipeline-info-text">
+            <h6>Analyze JS</h6>
+            <p>Unpacking client-side scripts for vulnerabilities.</p>
+          </div>
+        </div>
+        <div class="pipeline-info-step">
+          <div class="pipeline-info-icon">🎯</div>
+          <div class="pipeline-info-text">
+            <h6>Fuzz testing</h6>
+            <p>Automated payload injection for endpoint stress.</p>
+          </div>
+        </div>
+        <div class="pipeline-info-step last">
+          <div class="pipeline-info-icon">🛡️</div>
+          <div class="pipeline-info-text">
+            <h6>Detect vulnerabilities</h6>
+            <p>Final risk assessment and CVE mapping.</p>
+          </div>
+        </div>
+
+        <div class="ai-insight-box">
+          <div class="ai-label">AI Insight</div>
+          <p>Automated engines will optimize the scan strategy based on the domain's technology stack.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

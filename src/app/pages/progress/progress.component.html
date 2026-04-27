@@ -1,0 +1,160 @@
+<div class="scan-progress-page">
+
+  <!-- ─── SIDEBAR ─── -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="name">The Sentinel</div>
+      <div class="status">System Status: Secure</div>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="#"><span class="icon">🛡️</span> Threats</a>
+      <a href="#" class="active"><span class="icon">📋</span> Logs</a>
+      <a href="#"><span class="icon">🌐</span> Network</a>
+      <a href="#"><span class="icon">🔒</span> Vault</a>
+      <a href="#"><span class="icon">💻</span> Terminal</a>
+    </nav>
+    <div class="sidebar-bottom">
+      <button class="btn-killswitch">Emergency Killswitch</button>
+    </div>
+    <div class="sidebar-docs">
+      <a href="#">📄 Docs</a>
+      <a href="#">💬 Support</a>
+    </div>
+  </aside>
+
+  <!-- ─── MAIN ─── -->
+  <main class="scan-main">
+
+    <!-- Header -->
+    <div class="scan-header">
+      <div>
+        <span class="scan-title">Scan in Progress</span>
+        <span class="badge-running">RUNNING</span>
+      </div>
+      <div class="scan-target">⊙ Analyzing target: <span>{{ domain }}</span></div>
+    </div>
+
+    <!-- Overall Progress -->
+    <div class="progress-meta">
+      <span class="label">Overall Progress: 45%</span>
+      <span class="est">Est. 2m 30s Remaining</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill"></div>
+    </div>
+
+    <!-- Phases -->
+    <div class="phases-row">
+      @for (phase of phases; track phase.num) {
+        <div class="phase-card" [class]="phase.status">
+          <div class="phase-num">Phase {{ phase.num }}</div>
+          <div class="phase-name">{{ phase.name }}</div>
+          <div class="phase-sub" [class.queued]="phase.status === 'queued'">{{ phase.sub }}</div>
+          <div class="phase-status-icon">
+            @if (phase.status === 'done')    { ✅ }
+            @if (phase.status === 'running') { <span class="spin-icon">↻</span> }
+            @if (phase.status === 'queued')  { <span class="queued-icon">⌛</span> }
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="row g-3">
+
+      <!-- Activity + Log -->
+      <div class="col-lg-8">
+        <div class="activity-card">
+          <div class="activity-header">
+            <div class="activity-title">⊙ Current Activity <span class="probing-badge">PROBING...</span></div>
+          </div>
+
+          <div class="current-task">
+            <div class="task-spinner"></div>
+            <div class="task-text">Scanning ports on 192.168.12.104</div>
+            <div class="task-pct">72%</div>
+          </div>
+          <div class="task-bar"><div class="task-bar-fill"></div></div>
+
+          <!-- Log Terminal -->
+          <div class="log-card">
+            <div class="log-header">
+              <div class="log-dots"><span></span><span></span><span></span></div>
+              <div class="log-title">SENTINEL_STREAM_V4.LOG</div>
+              <div class="log-actions">
+                <button class="btn-log">Copy</button>
+                <button class="btn-log">Pause</button>
+              </div>
+            </div>
+            <div class="log-line"><span class="log-time">[14:02:11]</span> <span class="log-info">[*] Initializing security handshake with target engine...</span></div>
+            <div class="log-line"><span class="log-time">[14:02:14]</span> <span class="log-ok">[+] Target identity verified: example.com</span></div>
+            <div class="log-line"><span class="log-time">[14:02:18]</span> <span class="log-ok">[+] Discovered subdomain: <span class="log-highlight">api.example.com</span></span></div>
+            <div class="log-line"><span class="log-time">[14:02:22]</span> <span class="log-ok">[+] Discovered subdomain: <span class="log-highlight">dev-web-01.internal.example.com</span></span></div>
+            <div class="log-line"><span class="log-time">[14:02:25]</span> <span class="log-ok">[+] Open port 443 detected (Service: HTTPS)</span></div>
+            <div class="log-line"><span class="log-time">[14:02:26]</span> <span class="log-ok">[+] Open port 80 detected (Service: HTTP)</span></div>
+            <div class="log-line"><span class="log-time">[14:02:28]</span> <span class="log-info">[*] Crawling URLs from main entry point...</span></div>
+            <div class="log-line"><span class="log-time">[14:02:30]</span> <span class="log-ok">[+] Mapping directory structure: /v1/auth, /v1/users, /dashboard</span></div>
+            <div class="log-line"><span class="log-time">[14:02:32]</span> <span class="log-warn">[!] Potential sensitive file accessible: <span class="log-danger">.env.backup</span></span></div>
+            <div class="log-line"><span class="log-time">[14:02:35]</span> <span class="log-ok">[+] Initiating full port scan on 192.168.12.104</span></div>
+            <div class="log-line"><span class="log-time">[14:02:38]</span> <span class="log-info">[*] <span class="log-highlight">Thread #42 assigned to TCP range 1-1024</span></span></div>
+            <div class="log-line"><span class="log-time">[14:02:41]</span> <span class="log-dim">  Tail monitoring active... <span class="log-cursor"></span></span></div>
+          </div>
+        </div>
+
+        <!-- Go to Dashboard (demo) -->
+        <button class="btn-demo-dash" (click)="goToDashboard()">→ View Dashboard (Demo)</button>
+      </div>
+
+      <!-- Stats -->
+      <div class="col-lg-4">
+        <div class="stats-col">
+          <div class="stat-card">
+            <div class="stat-icon-box">☁️</div>
+            <div class="stat-info">
+              <div class="label">Assets Discovered</div>
+              <div class="val">24</div>
+            </div>
+            <div class="stat-trend">↗</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon-box">🔌</div>
+            <div class="stat-info">
+              <div class="label">Open Ports</div>
+              <div class="val">06</div>
+            </div>
+            <div class="stat-trend">↗</div>
+          </div>
+          <div class="stat-card danger-card">
+            <div class="stat-icon-box danger-box">⚠️</div>
+            <div class="stat-info">
+              <div class="label">Vulnerabilities</div>
+              <div class="val danger-val">02</div>
+            </div>
+            <div class="stat-trend danger-dot">●</div>
+          </div>
+          <div class="traffic-card">
+            <div class="traffic-label">Traffic Analysis Map</div>
+            <div class="traffic-bars">
+              @for (bar of trafficBars; track $index) {
+                <div class="traffic-bar"
+                     [style.height.%]="bar.height"
+                     [style.animation-delay.s]="bar.delay"></div>
+              }
+            </div>
+            <a class="traffic-link">Live Flow Analysis...</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer bar -->
+    <div class="scan-footer">
+      <span>© 2024 AUTOMATED SECURITY FRAMEWORK // ENCRYPTED SESSION</span>
+      <div class="footer-links">
+        <span>SYSTEM STATUS</span>
+        <span>API DOCUMENTATION</span>
+        <span>LEGAL PROXY</span>
+      </div>
+    </div>
+
+  </main>
+</div>

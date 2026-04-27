@@ -1,0 +1,168 @@
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <div class="hero-badge">● SYSTEM ONLINE</div>
+        <h1>Automated Web<br><span>Security Testing</span><br>Made Simple</h1>
+        <p class="lead">A comprehensive, guided pen-testing framework designed for modern security teams. Automate the mundane, focus on the complex, and secure your perimeter with precision.</p>
+        <div class="hero-input-group">
+          <input class="hero-input" type="text" [(ngModel)]="domain" placeholder="Enter domain (e.g. example.com)" />
+          <button class="btn-primary-accent" (click)="startScan()">Start Scan</button>
+        </div>
+        <button class="btn-outline-accent">Learn More</button>
+      </div>
+      <div class="col-lg-6 d-flex justify-content-center">
+        <div class="radar-ring">
+          <div class="radar-sweep"></div>
+          <div class="radar-dot"></div>
+          <div class="radar-dot"></div>
+          <div class="radar-dot"></div>
+          <div class="radar-dot"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FEATURES ─── -->
+<section class="features-row">
+  <div class="container">
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon">🛡️</div>
+          <h5>No Expertise Required</h5>
+          <p>Our guided framework walks you through complex assessments without needing a PhD in security.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h5>End-to-End Automation</h5>
+          <p>From discovery to final report, every step is choreographed for maximum efficiency.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h5>Modular Architecture</h5>
+          <p>Plug in custom modules or use our verified security blocks to tailor your scanning suite.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-3">
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <h5>Clear Reporting</h5>
+          <p>No more cryptic logs. Get actionable insights and remediation steps in plain English.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PIPELINE ─── -->
+<section class="pipeline-section">
+  <div class="container">
+    <h2>Pipeline Execution</h2>
+    <div class="underline-accent"></div>
+    <div class="pipeline-steps">
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">🌐</div>
+        <p>Enter Domain</p>
+        <div class="pipeline-arrow">›</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">🔍</div>
+        <p>Asset Discovery</p>
+        <div class="pipeline-arrow">›</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">🔌</div>
+        <p>Port Scanning</p>
+        <div class="pipeline-arrow">›</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">⚙️</div>
+        <p>JS Analysis</p>
+        <div class="pipeline-arrow">›</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">🎯</div>
+        <p>Fuzzing</p>
+        <div class="pipeline-arrow">›</div>
+      </div>
+      <div class="pipeline-step">
+        <div class="pipeline-step-icon">🛡️</div>
+        <p>Vulnerability Detection</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PERFORMANCE ─── -->
+<section class="perf-section">
+  <div class="container">
+    <h2>Optimized For Performance</h2>
+    <p class="sub">Engineered to handle high-concurrency environments without sacrificing scan depth or accuracy.</p>
+    <div class="row g-3">
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">⚡</div>
+          <h6>Reduce Manual Effort</h6>
+          <p>Automates up to 95% of standard reconnaissance and initial probing tasks instantly.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">👁️</div>
+          <h6>Discover Hidden Assets</h6>
+          <p>Surface forgotten subdomains, dev environments, and ghost APIs automatically.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">🚨</div>
+          <h6>Identify Vulnerabilities Faster</h6>
+          <p>Parallelized execution engines ensure critical flaws are caught in minutes, not days.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">🔒</div>
+          <h6>Improve Security Posture</h6>
+          <p>Maintain a constant guard with scheduled scans and drift detection for your infrastructure.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">🏗️</div>
+          <h6>Scalable Architecture</h6>
+          <p>Distributed worker nodes allow for scanning massive enterprise footprints concurrently.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="perf-card">
+          <div class="perf-card-icon">💻</div>
+          <h6>Developer-Friendly</h6>
+          <p>Native CI/CD integrations and RESTful APIs for automated security testing in every commit.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Start Securing Your<br>Application Today</h2>
+    <div class="cta-input-group">
+      <input class="hero-input" type="text" [(ngModel)]="domain" placeholder="Enter your domain" />
+      <button class="btn-primary-accent" (click)="startScan()">Start Free Scan</button>
+    </div>
+    <p class="cta-hint">No credit card required · Up to 10 endpoints included</p>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<app-footer />

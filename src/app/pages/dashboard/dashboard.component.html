@@ -1,0 +1,215 @@
+<div class="container dashboard-page">
+
+  <!-- ─── HEADER ─── -->
+  <div class="dash-header">
+    <div>
+      <div class="dash-title">
+        Scan Results Dashboard
+        <span class="badge-completed">COMPLETED</span>
+      </div>
+      <div class="dash-target">⊙ Target: <span>{{ domain }}</span></div>
+    </div>
+    <div class="dash-actions">
+      <button class="btn-outline-dim">📄 View Full Report</button>
+      <button class="btn-export">⬇ Export Results</button>
+    </div>
+  </div>
+
+  <!-- ─── METRICS ─── -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-lg">
+      <div class="metric-card">
+        <div class="metric-label">Total Assets</div>
+        <div class="metric-val">24</div>
+        <div class="metric-change new">+2 New</div>
+        <div class="metric-icon">🕸</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg">
+      <div class="metric-card">
+        <div class="metric-label">Open Ports</div>
+        <div class="metric-val">06</div>
+        <div class="metric-change">— No Change</div>
+        <div class="metric-icon">🔌</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg">
+      <div class="metric-card">
+        <div class="metric-label">Vulnerabilities</div>
+        <div class="metric-val">08</div>
+        <div class="metric-change warn">+1 Since Last</div>
+        <div class="metric-icon">🔎</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg">
+      <div class="metric-card danger">
+        <div class="metric-label">High Risk Issues</div>
+        <div class="metric-val">02</div>
+        <div class="metric-change" style="color:var(--danger)">● Active</div>
+        <div class="metric-icon">🚨</div>
+      </div>
+    </div>
+    <div class="col-6 col-lg">
+      <div class="metric-card">
+        <div class="metric-label">Scan Duration</div>
+        <div class="metric-val" style="font-size:1.5rem">4m 12s</div>
+        <div class="metric-change">Completed</div>
+        <div class="metric-icon">⏱</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── CHARTS ROW ─── -->
+  <div class="row g-3 mb-4">
+    <!-- Donut -->
+    <div class="col-lg-4">
+      <div class="chart-card">
+        <h6>Risk Distribution</h6>
+        <div class="donut-wrap">
+          <div class="donut">
+            <svg viewBox="0 0 36 36">
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#1e2a3a" stroke-width="3.5"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ff4757" stroke-width="3.5"
+                stroke-dasharray="25 75" stroke-dashoffset="0"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#ffa502" stroke-width="3.5"
+                stroke-dasharray="37.5 62.5" stroke-dashoffset="-25"/>
+              <circle cx="18" cy="18" r="15.9" fill="none" stroke="#00e5d4" stroke-width="3.5"
+                stroke-dasharray="37.5 62.5" stroke-dashoffset="-62.5"/>
+            </svg>
+            <div class="donut-center">
+              <span class="num">08</span>
+              <span class="lbl">Findings</span>
+            </div>
+          </div>
+          <div class="donut-legend">
+            <div class="legend-item"><span class="legend-dot" style="background:var(--danger)"></span>2 High</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--warn)"></span>3 Med</div>
+            <div class="legend-item"><span class="legend-dot" style="background:var(--accent)"></span>3 Low</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vuln Bars -->
+    <div class="col-lg-8">
+      <div class="chart-card">
+        <h6>Vulnerability Breakdown</h6>
+        <div class="vuln-row">
+          <div class="vuln-name">Stored XSS <span>2</span></div>
+          <div class="vuln-bar-track"><div class="vuln-bar-fill xss"></div></div>
+        </div>
+        <div class="vuln-row">
+          <div class="vuln-name">SQL Injection <span>1</span></div>
+          <div class="vuln-bar-track"><div class="vuln-bar-fill sqli"></div></div>
+        </div>
+        <div class="vuln-row">
+          <div class="vuln-name">SSTI <span>1</span></div>
+          <div class="vuln-bar-track"><div class="vuln-bar-fill ssti"></div></div>
+        </div>
+        <div class="vuln-row">
+          <div class="vuln-name">Info Disclosure <span>3</span></div>
+          <div class="vuln-bar-track"><div class="vuln-bar-fill info"></div></div>
+        </div>
+        <div class="vuln-row" style="margin-bottom:0">
+          <div class="vuln-name">Misconfiguration <span>1</span></div>
+          <div class="vuln-bar-track"><div class="vuln-bar-fill misc"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── ASSETS + OPS ─── -->
+  <div class="row g-3 mb-3">
+    <div class="col-lg-8">
+      <div class="assets-card">
+        <div class="card-header-row">
+          <h6>Discovered Assets</h6>
+          <div class="tags">
+            <span class="tag-chip">8 Subdomains</span>
+            <span class="tag-chip">4 IP Addresses</span>
+          </div>
+        </div>
+        <table class="table-sentinel">
+          <thead>
+            <tr><th>Asset Name</th><th>IP Address</th><th>Last Seen</th></tr>
+          </thead>
+          <tbody>
+            @for (asset of assets; track asset.name) {
+              <tr>
+                <td>{{ asset.name }}</td>
+                <td>{{ asset.ip }}</td>
+                <td>
+                  @if (asset.fresh) { <span style="color:var(--accent)">{{ asset.seen }}</span> }
+                  @else { {{ asset.seen }} }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-lg-4">
+      <div class="ops-card">
+        <h6>Security Operations</h6>
+        <div class="ops-item">
+          <div class="ops-icon">🔍</div>
+          <div class="ops-text">
+            <h6>Review Findings</h6>
+            <p>Analyze 8 detected threats</p>
+          </div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-icon">🚀</div>
+          <div class="ops-text">
+            <h6>Rescan Scope</h6>
+            <p>Trigger new vulnerability sweep</p>
+          </div>
+        </div>
+        <div class="ops-item">
+          <div class="ops-icon">🛡️</div>
+          <div class="ops-text">
+            <h6>Compliance Check</h6>
+            <p>Verify against SOC2/GDPR</p>
+          </div>
+        </div>
+        <div class="ops-footer">Framework Version: v3.14.0-Active</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PRIORITY FINDINGS ─── -->
+  <div class="findings-card">
+    <h6>Priority Findings</h6>
+    <table class="table-sentinel">
+      <thead>
+        <tr>
+          <th>Vulnerability</th>
+          <th>Severity</th>
+          <th>Affected Endpoint</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (f of findings; track f.name) {
+          <tr>
+            <td>
+              <span class="finding-dot" [class]="f.dot" style="display:inline-block;margin-right:0.5rem"></span>
+              {{ f.name }}
+            </td>
+            <td><span class="severity-badge" [class]="f.severity">{{ f.severity | uppercase }}</span></td>
+            <td><span class="endpoint-mono">{{ f.endpoint }}</span></td>
+            <td>
+              @if (f.status === 'open')      { <span class="status-open">⬥ Open</span> }
+              @if (f.status === 'reviewing') { <span class="status-reviewing">👁 Reviewing</span> }
+              @if (f.status === 'archived')  { <span class="status-archived">⊞ Archived</span> }
+            </td>
+            <td><button class="btn-investigate">Investigate</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

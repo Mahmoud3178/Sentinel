@@ -1,0 +1,228 @@
+/* ─── SENTINEL GLOBAL STYLES ─── */
+@import url('https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+:root {
+  --bg-dark: #0a0d12;
+  --bg-card: #111520;
+  --bg-card2: #151b28;
+  --accent: #00e5d4;
+  --accent2: #0096ff;
+  --danger: #ff4757;
+  --warn: #ffa502;
+  --success: #2ed573;
+  --text: #c8d8e8;
+  --text-dim: #5a6a7a;
+  --text-bright: #e8f4ff;
+  --border: #1e2a3a;
+  --mono: 'Share Tech Mono', monospace;
+  --head: 'Rajdhani', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-dark);
+  color: var(--text);
+  font-family: var(--body);
+  min-height: 100vh;
+}
+
+/* ─── SHARED BUTTON STYLES ─── */
+.btn-primary-accent {
+  background: var(--accent);
+  color: #000;
+  border: none;
+  font-family: var(--head);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  white-space: nowrap;
+  &:hover { background: #00fff0; box-shadow: 0 0 20px rgba(0,229,212,0.35); }
+}
+
+.btn-outline-accent {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--head);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.2s;
+  &:hover { background: rgba(0,229,212,0.08); }
+}
+
+.btn-outline-dim {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: var(--head);
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.03em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  &:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+.btn-export {
+  background: var(--accent);
+  border: none;
+  color: #000;
+  font-family: var(--head);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 0.55rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  &:hover { background: #00fff0; }
+}
+
+/* ─── SHARED TABLE STYLES ─── */
+.table-sentinel {
+  width: 100%;
+  border-collapse: collapse;
+  th {
+    font-family: var(--mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.5rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    text-align: left;
+    font-weight: 400;
+  }
+  td {
+    font-size: 0.82rem;
+    color: var(--text);
+    padding: 0.75rem 0.8rem;
+    border-bottom: 1px solid var(--border);
+    font-family: var(--mono);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg-card2); }
+}
+
+/* ─── BADGE STYLES ─── */
+.badge-risk {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.badge-high { background: rgba(255,71,87,0.15); color: var(--danger); border: 1px solid rgba(255,71,87,0.3); }
+.badge-low  { background: rgba(0,150,255,0.1);  color: var(--accent2); border: 1px solid rgba(0,150,255,0.3); }
+.badge-pending { background: rgba(255,165,2,0.1); color: var(--warn); border: 1px solid rgba(255,165,2,0.3); }
+
+/* ─── SEVERITY BADGE ─── */
+.severity-badge {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  text-transform: uppercase;
+  &.high   { background: rgba(255,71,87,0.15);  color: var(--danger); border: 1px solid rgba(255,71,87,0.3); }
+  &.medium { background: rgba(255,165,2,0.12);  color: var(--warn);   border: 1px solid rgba(255,165,2,0.3); }
+  &.low    { background: rgba(0,150,255,0.1);   color: var(--accent2);border: 1px solid rgba(0,150,255,0.3); }
+}
+
+/* ─── SCAN LABEL ─── */
+.scan-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.7rem;
+}
+
+/* ─── UNDERLINE ACCENT ─── */
+.underline-accent {
+  width: 40px;
+  height: 2px;
+  background: var(--accent);
+  margin-bottom: 3rem;
+}
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse   { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes sweep   { to { transform: rotate(360deg); } }
+@keyframes spin    { to { transform: rotate(360deg); } }
+@keyframes blink   { 0%,100%{opacity:1} 50%{opacity:0.3} }
+@keyframes waveBar { 0%,100%{opacity:0.6} 50%{opacity:1} }
+@keyframes fillbar { 0%{width:30%} 50%{width:70%} 100%{width:30%} }
+
+/* ─── PROGRESS BAR MINI ─── */
+.progress-bar-mini {
+  height: 4px;
+  background: var(--border);
+  border-radius: 0;
+  overflow: hidden;
+  display: inline-block;
+  width: 80px;
+  vertical-align: middle;
+  .fill {
+    height: 100%;
+    background: var(--accent);
+    animation: fillbar 2s ease-in-out infinite;
+  }
+}
+
+/* ─── STATUS COLORS ─── */
+.status-open      { color: var(--danger); font-family: var(--mono); font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+.status-reviewing { color: var(--warn);   font-family: var(--mono); font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+.status-archived  { color: var(--text-dim); font-family: var(--mono); font-size: 0.72rem; display: flex; align-items: center; gap: 0.3rem; }
+
+/* ─── FINDING DOT ─── */
+.finding-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  margin-top: 2px;
+  &.high   { background: var(--danger); box-shadow: 0 0 6px var(--danger); }
+  &.medium { background: var(--warn); }
+  &.low    { background: var(--accent2); }
+  &.info   { background: var(--text-dim); }
+}
+
+/* ─── BTN INVESTIGATE ─── */
+.btn-investigate {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  &:hover { border-color: var(--accent); color: var(--accent); }
+}
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 768px) {
+  .sidebar { display: none; }
+}
